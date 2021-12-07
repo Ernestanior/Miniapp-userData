@@ -6,16 +6,37 @@
 
 #### 先来看看旧版本的用户获取（新版本已废除，此处仅作参考）
 
-wxml文件
-```wxml
+.wxml
+```
 <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 ```
 
-js文件
-```js
+.js
+```
 wx.getUserInfo({
   success: function(res) {
-    console.log(res)
+    console.log(res);
   }
 })
 ```
+
+#### 再来看看目前新版本的用户获取
+
+.wxml
+```
+<button bindtap="getUserProfile">授权登录</button>
+```
+
+.js
+```
+getUserProfile(e) {
+    wx.getUserProfile({
+      success: (res) => {
+        console.log(res);
+      }
+    })
+  },
+```
+
+#### 之前的getUserInfo已经不再弹窗，获取的也是默认数据，新版本通过getUserProfile获取
+
