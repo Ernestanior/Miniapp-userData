@@ -93,4 +93,4 @@ getUserProfile(e) {
   },
 ```
 点击按钮之后就能够拿到openID了,数据如下：
-<img src="https://github.com/Ernestanior/Miniapp-userData/blob/087e5046098d5a0c854dc38b8e5df84330190ab1/screenshot/p3.png" width="1520px">
+<img src="https://github.com/Ernestanior/Miniapp-userData/blob/27a7f62abc6299dcbe8c7bf362b26c57e52167c0/screenshot/p3.png" width="1520px">
