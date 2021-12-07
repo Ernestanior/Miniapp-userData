@@ -56,3 +56,4 @@ UnionID: 其实unionID和OpenID在本质上是没有任何区别的，但是如�
 获取OpenID需要向微信提供的特定url发送请求，
 请求地址：https://api.weixin.qq.com/sns/jscode2session（微信官方提供的）
 请求参数：
+<img src="https://github.com/Ernestanior/Miniapp-userData/master/screenshot/p1.png" width="320px">
