@@ -6,6 +6,16 @@
 
 #### 先来看看旧版本的用户获取（新版本已废除，此处仅作参考）
 
+wxml文件
 ```wxml
 <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+```
+
+js文件
+```js
+wx.getUserInfo({
+  success: function(res) {
+    console.log(res)
+  }
+})
 ```
