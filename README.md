@@ -40,7 +40,7 @@ getUserProfile(e) {
 
 #### 之前的getUserInfo已经不再弹窗，获取的也是默认数据，新版本通过getUserProfile获取
 
-### 1. 接下来是敏感数据，用户唯一标识unionID,openID的获取
+### 2. 接下来是敏感数据，用户唯一标识unionID,openID的获取
 
 在小程序中，能够作为每个用户账号的唯一标识就是unionID和openID, 这时有人会问以下问题：
 1. 这两个ID都有什么意义？
@@ -49,7 +49,8 @@ getUserProfile(e) {
 
 回答：
 OpenID: 这个ID就好比我们的身份证，在我们不知道某个人的情况，可通过OpenID来查询某个用户，这个OpenID不是我们手动生成的，需要前端通过微信提供的API wx.login()拿到一个code，再用这个code发请求到微信sns后台获取sessionKey和OpenID.
-UnionID: 其实unionID和OpenID在本质上是没有任何区别的，但是如果一个在同一个公众号下面使用多个小程序(注意必须是在同一主体公众号下面绑定的小程序)的时候，这时候OpenID将会是不一样的，此时此刻将会用到unionID，因为unionID只要是在同一主体下面，unionID这个值永远是一样的，可以用来判断是否为同一个人,但如果只针对于一个小程序来说,openID和unionID基本没什么区别。
+UnionID: 其实unionID和OpenID在本质上是没有任何区别的，如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），这时候同一个用户在使用不同小程序的时候，OpenID是不一样的，此时此刻将会用到unionID，因为unionID只要是在同一主体下面，unionID这个值永远是一样的，可以用来判断是否为同一个人。但如果只针对于一个小程序来说,openID和unionID基本没什么区别。
+一句话概括：同一用户，对同一个微信开放平台下的不同应用，UnionID相同，openID不同。
 
 #### OpenID获取：
 
@@ -95,3 +96,10 @@ getUserProfile(e) {
 点击按钮之后就能够拿到openID了,数据如下：
 
 <img src="https://github.com/Ernestanior/Miniapp-userData/blob/27a7f62abc6299dcbe8c7bf362b26c57e52167c0/screenshot/p3.png" width="1520px">
+
+#### UnionID获取：（官方给出的获取方式）
+
+绑定了开发者帐号的小程序，可以通过以下途径获取 UnionID。
+1. 开发者可以直接通过 wx.login + code2Session 获取到该用户 UnionID，无须用户授权。
+2. 小程序端调用云函数时，可在云函数中通过 Cloud.getWXContext 获取 UnionID。
+3. 用户在小程序（暂不支持小游戏）中支付完成后，开发者可以直接通过getPaidUnionId接口获取该用户的 UnionID，无需用户授权。注意：本接口仅在用户支付完成后的5分钟内有效，请开发者妥善处理
