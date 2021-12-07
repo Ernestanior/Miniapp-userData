@@ -61,4 +61,34 @@ UnionID: 其实unionID和OpenID在本质上是没有任何区别的，但是如�
 
 首先你要获取appId和appSecret这两个参数，可以从微信公众平台里的开发管理中获取，如下图：
 
-<img src="https://github.com/Ernestanior/Miniapp-userData/blob/087e5046098d5a0c854dc38b8e5df84330190ab1/screenshot/p2.png" width="1520px">
+<img src="https://github.com/Ernestanior/Miniapp-userData/blob/087e5046098d5a0c854dc38b8e5df84330190ab1/screenshot/p2.png" width="720px">
+
+接下来是代码：
+.wxml
+```
+ <button bindtap="getUserProfile">登录</button>
+```
+
+.js
+```
+getUserProfile(e) {
+    wx.login({
+      success(res){
+        const {code}=res;
+        wx.request({
+          url: 'https://api.weixin.qq.com/sns/jscode2session',
+          data:{
+            appid:appID,//获取方式在上图中
+            secret:appSecret,//获取方式在上图中
+            js_code:code,
+            grant_type:'authorization_code'
+          },
+          method:"GET",
+          success(res){
+            console.log(res);//里面包含openID和session_key
+          }
+        })
+      }
+    })
+  },
+```
