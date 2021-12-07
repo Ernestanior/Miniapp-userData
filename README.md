@@ -1,4 +1,4 @@
-## 获取用户基本信息以及用户唯一标识openID的获取步骤
+## 获取用户基本信息以及用户唯一标识unionID,openID的获取步骤
 
 ### 1. 首先是用户基本信息的获取
 
@@ -40,3 +40,19 @@ getUserProfile(e) {
 
 #### 之前的getUserInfo已经不再弹窗，获取的也是默认数据，新版本通过getUserProfile获取
 
+### 1. 接下来是敏感数据，用户唯一标识unionID,openID的获取
+
+在小程序中，能够作为每个用户账号的唯一标识就是unionID和openID, 这时有人会问以下问题：
+1. 这两个ID都有什么意义？
+2. 唯一标识有一个就够了为什么这有两个？
+3. 这两个ID有什么区别，我们平时应该用哪一个作为唯一标识比较好？
+
+回答：
+OpenID: 这个ID就好比我们的身份证，在我们不知道某个人的情况，可通过OpenID来查询某个用户，这个OpenID不是我们手动生成的，需要前端通过微信提供的API wx.login()拿到一个code，再用这个code发请求到微信sns后台获取sessionKey和OpenID.
+UnionID: 其实unionID和OpenID在本质上是没有任何区别的，但是如果一个在同一个公众号下面使用多个小程序(注意必须是在同一主体公众号下面绑定的小程序)的时候，这时候OpenID将会是不一样的，此时此刻将会用到unionID，因为unionID只要是在同一主体下面，unionID这个值永远是一样的，可以用来判断是否为同一个人,但如果只针对于一个小程序来说,openID和unionID基本没什么区别。
+
+#### OpenID获取：
+
+获取OpenID需要向微信提供的特定url发送请求，
+请求地址：https://api.weixin.qq.com/sns/jscode2session（微信官方提供的）
+请求参数：
